@@ -1,6 +1,13 @@
-int main(int argc, char *argv[])
+#include "qosa_def.h"
+
+#define BLACKLIST_DEMO_SIM_ID 0
+#define BLACKLIST_DEMO_PDP_ID 1
+
+static void blacklist_demo_init(void)
 {
-    qosa_uint8_t simid = 0;                                      // SIM卡ID，配置卡槽0
+    qosa_uint8_t sim_id = BLACKLIST_DEMO_SIM_ID;                 // SIM卡ID，配置卡槽0
+    qosa_uint8_t pdp_id = BLACKLIST_DEMO_PDP_ID;
+
     // 初始化网络黑名单配置模板参数结构体
     qapp_easy_nw_blacklist_param_t tpl = {
         .blacklist.common.enable = QOSA_TRUE,                    // 使能网络黑名单总功能
@@ -15,7 +22,5 @@ int main(int argc, char *argv[])
     // 将配置好的黑名单参数 写入到 用户自定义黑名单模板0 中
     qapp_easy_nw_blacklist_tpl_set_config(&tpl, QAPP_EASY_NW_BLACKLIST_TPL_USER_0);
     // 将用户自定义黑名单模板0 的配置参数，下发写入到指定SIM卡和PDP链路，配置生效
-    qapp_easy_nw_blacklist_tpl_write(simid, pdp_id, QAPP_EASY_NW_BLACKLIST_TPL_USER_0);
-    
-    return 0;
+    qapp_easy_nw_blacklist_tpl_write(sim_id, pdp_id, QAPP_EASY_NW_BLACKLIST_TPL_USER_0);
 }
