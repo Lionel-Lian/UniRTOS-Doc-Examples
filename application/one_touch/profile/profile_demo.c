@@ -1,7 +1,12 @@
-int main(int argc, char *argv[])
+#include "qosa_def.h"
+
+#define PROFILE_DEMO_SIM_ID 0
+#define PROFILE_DEMO_PDP_ID 1
+
+static void profile_demo_init(void)
 {
-    qosa_uint8_t simid = 0;
-    qosa_uint8_t pdp_id = 1;
+    qosa_uint8_t sim_id = PROFILE_DEMO_SIM_ID;
+    qosa_uint8_t pdp_id = PROFILE_DEMO_PDP_ID;
     qapp_easy_nw_datacall_prof_param_t tpl = {
         // PDP上下文核心配置参数段
         .pdp.apn_valid = QOSA_TRUE,            /**< APN配置项生效开关：开启，本次配置的APN内容有效 */
