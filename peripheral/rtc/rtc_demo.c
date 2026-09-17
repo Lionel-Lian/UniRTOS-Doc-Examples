@@ -17,6 +17,7 @@
 #include "qosa_rtc.h"
 #include "qosa_def.h"
 #include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
 
 /*===========================================================================
  *  Macro Definition
@@ -147,3 +148,5 @@ void quec_rtc_demo_init(void)
         qosa_task_create(&g_quec_rtc_demo_task, CONFIG_QUECOS_RTC_DEMO_TASK_STACK_SIZE, QOSA_PRIORITY_NORMAL, "rtc_demo", quec_rtc_demo_process, QOSA_NULL);
     }
 }
+
+UNIRTOS_APP_EXPORT(200, "rtc_demo", quec_rtc_demo_init);

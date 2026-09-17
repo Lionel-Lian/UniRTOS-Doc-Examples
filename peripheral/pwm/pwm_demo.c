@@ -21,6 +21,7 @@
 #include "pwm_demo.h"
 #include <stdlib.h>
 #include <string.h>
+#include "unirtos_app_init_registry.h"
 
 /*===========================================================================
  *  Macro Definition
@@ -135,3 +136,5 @@ void quec_pwm_demo_init(void)
         );
     }
 }
+
+UNIRTOS_APP_EXPORT(200, "pwm_demo", quec_pwm_demo_init);

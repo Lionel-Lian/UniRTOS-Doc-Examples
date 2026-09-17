@@ -8,6 +8,7 @@
 
 #ifdef CONFIG_QCM_VTLS_FUNC
 #include "qcm_vtls_cfg.h"
+#include "unirtos_app_init_registry.h"
 #endif /* CONFIG_QCM_VTLS_FUNC */
 
 #define QOS_LOG_TAG               LOG_TAG
@@ -820,3 +821,5 @@ void unir_mqtt_demo_init(void)
         return;
     }
 }
+
+UNIRTOS_APP_EXPORT(200, "mqtt_demo", unir_mqtt_demo_init);

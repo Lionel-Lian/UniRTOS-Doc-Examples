@@ -23,6 +23,7 @@
 #include <string.h>
 #include "qosa_datacall.h"
 #include "qosa_power.h"
+#include "unirtos_app_init_registry.h"
 
 /*===========================================================================
  *  Macro Definition
@@ -495,3 +496,5 @@ void unir_http_fota_demo_init(void)
         );
     }
 }
+
+UNIRTOS_APP_EXPORT(200, "http_fota_demo", unir_http_fota_demo_init);
