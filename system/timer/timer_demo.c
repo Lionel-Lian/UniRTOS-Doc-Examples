@@ -11,6 +11,7 @@
 #include "qosa_log.h"
 #include "qosa_def.h"
 #include "qosa_sys.h"
+#include "unirtos_app_init_registry.h"
 
 #define QOS_LOG_TAG LOG_TAG
 
@@ -150,3 +151,5 @@ int32_t osTimerTest_init(void)
     QLOGV("\nTimer test completed\n");
     return QOSA_TRUE;
 }
+
+UNIRTOS_APP_EXPORT(200, "timer_demo", osTimerTest_init);

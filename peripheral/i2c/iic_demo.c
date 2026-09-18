@@ -19,6 +19,7 @@
 #include "qosa_def.h"
 #include "qosa_log.h"
 #include "iic_demo.h"
+#include "unirtos_app_init_registry.h"
 
 /*===========================================================================
  *  Macro Definition
@@ -101,3 +102,5 @@ void quec_iic_demo_init(void)
         );
     }
 }
+
+UNIRTOS_APP_EXPORT(200, "iic_demo", quec_iic_demo_init);

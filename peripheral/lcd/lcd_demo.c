@@ -22,6 +22,7 @@
 #include "qosa_log.h"
 #include "lcd_demo.h"
 #include "logo.h"
+#include "unirtos_app_init_registry.h"
 
 /*===========================================================================
  * Macro Definition
@@ -288,3 +289,5 @@ void quec_lcd_demo_init(void)
         QLOGW("LCD demonstration task already exists");
     }
 }
+
+UNIRTOS_APP_EXPORT(200, "lcd_demo", quec_lcd_demo_init);

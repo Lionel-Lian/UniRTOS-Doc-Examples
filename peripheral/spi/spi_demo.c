@@ -20,6 +20,7 @@
 #include "qosa_log.h"
 #include <string.h>
 #include "spi_demo.h"
+#include "unirtos_app_init_registry.h"
 
 /*===========================================================================
  *  Macro Definition
@@ -341,3 +342,5 @@ void quec_spi_demo_init(void)
         );
     }
 }
+
+UNIRTOS_APP_EXPORT(200, "spi_demo", quec_spi_demo_init);

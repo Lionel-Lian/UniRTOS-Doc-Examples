@@ -18,6 +18,7 @@
 #include "qosa_def.h"
 #include "qosa_log.h"
 #include "adc_demo.h"
+#include "unirtos_app_init_registry.h"
 
 /*===========================================================================
  *  Macro Definition
@@ -90,3 +91,5 @@ void quec_adc_demo_init(void)
         );
     }
 }
+
+UNIRTOS_APP_EXPORT(200, "adc_demo", quec_adc_demo_init);
