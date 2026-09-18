@@ -5,6 +5,7 @@
 #include "mbedtls/entropy.h"
 #include "mbedtls/error.h"
 #include "mbedtls/pk.h"
+#include "unirtos_app_init_registry.h"
 
 #define RSA_BUFFER_SIZE 512
 
@@ -240,3 +241,10 @@ cleanup:
 
     return ret;
 }
+
+static void __unirtos_export_rsa_demo(void)
+{
+    (void)rsa_encrypt_decrypt_demo();
+}
+
+UNIRTOS_APP_EXPORT(200, "rsa_demo", __unirtos_export_rsa_demo);

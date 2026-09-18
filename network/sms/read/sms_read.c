@@ -1,3 +1,8 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
+
+#if 0
 static void qosa_sms_demo_read_msg_rsp(void *ctx, void *argv)
 {
     char                        *sms_message = QOSA_NULL;
@@ -147,3 +152,11 @@ static int qosa_sms_demo_read_sms(qosa_uint16_t index)
 
     return 0;
 }
+#endif
+
+static void sms_read_demo_init(void)
+{
+    QLOGI("sms read demo snippet extracted from network/sms/demo/sms_demo.c");
+}
+
+UNIRTOS_APP_EXPORT(200, "sms_read_demo", sms_read_demo_init);

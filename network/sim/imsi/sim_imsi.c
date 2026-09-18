@@ -1,3 +1,7 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
+
 // 同步获取IMSI
 int sim_demo_sim_imsi_get_sync(qosa_uint8_t simid)
 {
@@ -14,6 +18,13 @@ int sim_demo_sim_imsi_get_sync(qosa_uint8_t simid)
     }
     return ret;
 }
+
+static void __unirtos_export_sim_imsi(void)
+{
+    (void)sim_demo_sim_imsi_get_sync(0);
+}
+
+UNIRTOS_APP_EXPORT(200, "sim_imsi", __unirtos_export_sim_imsi);
 
 /**
  * @brief SIM卡获取IMSI异步回调函数

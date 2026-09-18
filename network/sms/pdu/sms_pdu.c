@@ -1,3 +1,8 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
+
+#if 0
 //send pdu sms
 
 static void qosa_sms_demo_send_msg_rsp(void *ctx, void *argv)
@@ -79,3 +84,11 @@ static int qosa_sms_demo_send_pdu_sms(const char *message_txt, qosa_uint32_t pdu
     return 0;
 
 }
+#endif
+
+static void sms_pdu_demo_init(void)
+{
+    QLOGI("sms pdu demo snippet extracted from network/sms/demo/sms_demo.c");
+}
+
+UNIRTOS_APP_EXPORT(200, "sms_pdu_demo", sms_pdu_demo_init);

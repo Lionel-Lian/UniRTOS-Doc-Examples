@@ -1,3 +1,8 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
+
+#if 0
 /** LBS basic information configuration */
 static qcm_lbs_basic_info_t g_basic_info    = {.type = 1,        /*!< Location type */
        .encrypt = 1,     /*!< Encryption flag */
@@ -45,3 +50,11 @@ if (QCM_LBS_SUCCESS == qcm_lbs_get_position(g_lbs_cli, "www.queclocator.com", &u
 }else{
     QLOGV("lbs failed");
 }
+#endif
+
+static void lbs_demo_init(void)
+{
+    QLOGI("lbs demo snippet requires project-specific network and auth setup");
+}
+
+UNIRTOS_APP_EXPORT(200, "lbs_demo", lbs_demo_init);

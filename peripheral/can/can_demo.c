@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "app.h"
 #include "bsp_can.h"
+#include "unirtos_app_init_registry.h"
 
 
 /*
@@ -81,6 +82,13 @@ void CAN_SignalUnitEvent(uint32_t event)
         txState = CAN_MESSAGE_TX_ABORT_BY_BUS_OFF;
     }
 }
+
+static void can_demo_init(void)
+{
+    CAN_ExampleEntry();
+}
+
+UNIRTOS_APP_EXPORT(200, "can_demo", can_demo_init);
 
 void CAN_SignalObjectEvent(uint32_t obj_idx, uint32_t event)
 {

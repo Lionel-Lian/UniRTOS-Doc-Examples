@@ -1,3 +1,7 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
+
 // 检查SIM的状态信息，包括插入状态，缓冲状态，功能块初始化状态
 int sim_demo_sim_status_check(qosa_uint8_t simid)
 {
@@ -30,3 +34,10 @@ int sim_demo_sim_status_check(qosa_uint8_t simid)
 
     return ret;
 }
+
+static void __unirtos_export_sim_status(void)
+{
+    (void)sim_demo_sim_status_check(0);
+}
+
+UNIRTOS_APP_EXPORT(200, "sim_status", __unirtos_export_sim_status);

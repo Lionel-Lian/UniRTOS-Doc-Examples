@@ -11,6 +11,7 @@
 #include "qcm_vtls.h"
 #include "qosa_log.h"
 #include "qosa_sockets.h"
+#include "unirtos_app_init_registry.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -109,7 +110,7 @@ static int create_socket_connection(const char *server_ip, uint16_t port)
 }
 
 /* 主函数 */
-int main(void)
+static int ssl_blocking_demo_main(void)
 {
     qcm_ssl_config_t        ssl_config = {0};
     qcm_ssl_connect_data_t *ssl_conn = NULL;
@@ -236,3 +237,10 @@ int main(void)
     QLOGI("SSL示例执行完成");
     return 0;
 }
+
+static void __unirtos_export_ssl_blocking_demo(void)
+{
+    (void)ssl_blocking_demo_main();
+}
+
+UNIRTOS_APP_EXPORT(200, "ssl_blocking_demo", __unirtos_export_ssl_blocking_demo);

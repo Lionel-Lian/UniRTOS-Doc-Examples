@@ -1,4 +1,7 @@
 #include "qosa_def.h"
+#include "qosa_log.h"
+#include "qosa_sys.h"
+#include "unirtos_app_init_registry.h"
 
 #define QOS_LOG_TAG  LOG_TAG_COMPONENT
 
@@ -45,3 +48,5 @@ void demo_random(void) {
     
     QLOGI("===== random number demo end =====");
 }
+
+UNIRTOS_APP_EXPORT(200, "rand", demo_random);

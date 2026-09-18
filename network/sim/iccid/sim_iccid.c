@@ -1,6 +1,10 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
+
 
 // 同步获取ICCID
-int sim_demo_sim_iccid_get_sync(qosa_uint8_t simid)
+/**int sim_demo_sim_iccid_get_sync(qosa_uint8_t simid)
 {
     qosa_sim_iccid_t  iccid = {0};
     int               ret = 0;
@@ -16,6 +20,13 @@ int sim_demo_sim_iccid_get_sync(qosa_uint8_t simid)
     return ret;
 }
 
+static void __unirtos_export_sim_iccid(void)
+{
+    (void)sim_demo_sim_iccid_get_sync(0);
+}
+
+UNIRTOS_APP_EXPORT(200, "sim_iccid", __unirtos_export_sim_iccid);
+**/
 /**
  * @brief SIM卡获取ICCID异步回调函数
  * 
@@ -56,3 +67,5 @@ int sim_demo_sim_iccid_get_async(qosa_uint8_t simid)
     }
     return ret;
 }
+
+UNIRTOS_APP_EXPORT(200, "sim_iccid", sim_demo_get_iccid_cb);

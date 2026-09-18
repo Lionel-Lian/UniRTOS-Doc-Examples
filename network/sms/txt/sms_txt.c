@@ -1,3 +1,8 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
+
+#if 0
 //send Chinese characters sms
 
 static void qosa_sms_demo_send_msg_rsp(void *ctx, void *argv)
@@ -109,3 +114,11 @@ static int qosa_sms_demo_send_all_characters_sms(const char *phone_number, const
     }
     return 0;
 }
+#endif
+
+static void sms_txt_demo_init(void)
+{
+    QLOGI("sms txt demo snippet extracted from network/sms/demo/sms_demo.c");
+}
+
+UNIRTOS_APP_EXPORT(200, "sms_txt_demo", sms_txt_demo_init);

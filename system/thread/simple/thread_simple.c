@@ -1,5 +1,6 @@
 #include "qosa_sys.h"
 #include <stdio.h>
+#include "unirtos_app_init_registry.h"
 
 void task_A(void *argv)
 {
@@ -18,7 +19,7 @@ void task_B(void *argv)
     }
 }
 
-int main(void)
+static int thread_simple_main(void)
 {
     qosa_task_t handleA, handleB;
 
@@ -27,3 +28,10 @@ int main(void)
 
     while (1) qosa_task_sleep_ms(1000); // 主任务让出CPU
 }
+
+static void __unirtos_export_thread_simple(void)
+{
+    (void)thread_simple_main();
+}
+
+UNIRTOS_APP_EXPORT(200, "thread_simple", __unirtos_export_thread_simple);

@@ -1,3 +1,7 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
+
 // 设置热插拔
 int sim_demo_sim_hot_swap_config(qosa_uint8_t simid, qosa_bool_t enable)
 {
@@ -30,3 +34,10 @@ int sim_demo_sim_hot_swap_config(qosa_uint8_t simid, qosa_bool_t enable)
     }
     return ret;
 }
+
+static void __unirtos_export_sim_hot_swap(void)
+{
+    (void)sim_demo_sim_hot_swap_config(0, QOSA_TRUE);
+}
+
+UNIRTOS_APP_EXPORT(200, "sim_hot_swap", __unirtos_export_sim_hot_swap);

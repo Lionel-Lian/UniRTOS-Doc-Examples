@@ -1,5 +1,6 @@
 #include "qosa_sys.h"
 #include <stdio.h>
+#include "unirtos_app_init_registry.h"
 
 typedef struct {
     int sensor_id;
@@ -30,7 +31,7 @@ void consumer_task(void *argv)
     }
 }
 
-int main(void)
+static int thread_producer_consumer_main(void)
 {
     qosa_task_t consumer, producer;
 
@@ -39,3 +40,10 @@ int main(void)
 
     while (1) qosa_task_sleep_ms(1000);
 }
+
+static void __unirtos_export_thread_producer_consumer(void)
+{
+    (void)thread_producer_consumer_main();
+}
+
+UNIRTOS_APP_EXPORT(200, "thread_producer_consumer", __unirtos_export_thread_producer_consumer);

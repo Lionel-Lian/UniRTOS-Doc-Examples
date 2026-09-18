@@ -1,5 +1,6 @@
 #include "qosa_sys.h"
 #include <stdio.h>
+#include "unirtos_app_init_registry.h"
 
 // 假设这是一个外部中断的ISR（简化示例）
 void EXTI_IRQHandler(void)
@@ -30,7 +31,7 @@ void irq_handler_task(void *argv)
 
 qosa_task_t g_irq_handler_task;
 
-int main(void)
+static int thread_interrupt_main(void)
 {
     // 创建带消息队列的处理任务
     qosa_task_create_ex(&g_irq_handler_task, 2048, 15, "irq_hdlr", irq_handler_task, NULL, 20, sizeof(uint32_t));
@@ -38,3 +39,10 @@ int main(void)
     // 配置中断、注册ISR等（略）
     while (1) qosa_task_sleep_ms(1000);
 }
+
+static void __unirtos_export_thread_interrupt(void)
+{
+    (void)thread_interrupt_main();
+}
+
+UNIRTOS_APP_EXPORT(200, "thread_interrupt", __unirtos_export_thread_interrupt);

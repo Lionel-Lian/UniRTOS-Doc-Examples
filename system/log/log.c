@@ -1,4 +1,5 @@
 #include "qosa_log.h"
+#include "unirtos_app_init_registry.h"
 
 #define QOS_LOG_TAG  LOG_TAG_COMPONENT
 
@@ -37,3 +38,5 @@ void main_demo(void)
 {
     qlog_level_demo();
 }
+
+UNIRTOS_APP_EXPORT(200, "log", main_demo);

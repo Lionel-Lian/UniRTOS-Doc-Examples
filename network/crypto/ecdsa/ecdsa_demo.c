@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include "psa/crypto.h"
+#include "unirtos_app_init_registry.h"
 
 int ecdsa_psa_sign_verify_demo(void)
 {
@@ -72,3 +73,10 @@ int ecdsa_psa_sign_verify_demo(void)
     psa_destroy_key(key);
     return PSA_SUCCESS;
 }
+
+static void __unirtos_export_ecdsa_demo(void)
+{
+    (void)ecdsa_psa_sign_verify_demo();
+}
+
+UNIRTOS_APP_EXPORT(200, "ecdsa_demo", __unirtos_export_ecdsa_demo);

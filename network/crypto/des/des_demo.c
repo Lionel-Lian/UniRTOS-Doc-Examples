@@ -1,4 +1,5 @@
 #include "mbedtls/des.h"
+#include "unirtos_app_init_registry.h"
 
 void des3_encrypt_demo(void)
 {
@@ -15,3 +16,5 @@ void des3_encrypt_demo(void)
 
     mbedtls_des3_free(&ctx);
 }
+
+UNIRTOS_APP_EXPORT(200, "des_demo", des3_encrypt_demo);

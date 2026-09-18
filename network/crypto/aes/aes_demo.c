@@ -1,5 +1,6 @@
 #include "qcm_aes.h"
 #include "qosa_sys.h"
+#include "unirtos_app_init_registry.h"
 
 void app_aes_demo(void) {
     qosa_uint8_t key[16] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
@@ -15,3 +16,5 @@ void app_aes_demo(void) {
     /* 2. 解密 */
     qcm_aes_string_decryption(key, 16, enc_data, dec_data);
 }
+
+UNIRTOS_APP_EXPORT(200, "aes_demo", app_aes_demo);

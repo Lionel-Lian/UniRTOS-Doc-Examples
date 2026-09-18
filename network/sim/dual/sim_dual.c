@@ -1,3 +1,8 @@
+#include "qosa_def.h"
+#include "qosa_log.h"
+#include "qosa_sys.h"
+#include "unirtos_app_init_registry.h"
+
 /**
  * @brief SIM 示例设置 CFUN 回调函数
  *
@@ -112,7 +117,14 @@ static int sim_demo_dual_sim_switch(qosa_uint8_t simid)
         }
     }
     qosa_sem_delete(g_sim_demo_sem)；
-    g_sim_demo_sem = NULL;
+    g_sim_demo_sem = QOSA_NULL;
 
     return ret;
 }
+
+static void __unirtos_export_sim_dual(void)
+{
+    (void)sim_demo_dual_sim_switch(0);
+}
+
+UNIRTOS_APP_EXPORT(200, "sim_dual", __unirtos_export_sim_dual);

@@ -3,6 +3,7 @@
 #include "mbedtls/ctr_drbg.h"
 #include "mbedtls/ecdh.h"
 #include "mbedtls/entropy.h"
+#include "unirtos_app_init_registry.h"
 
 /*
  * 成功时：
@@ -132,3 +133,13 @@ int ecdh_key_agreement_demo(unsigned char *shared_key,
 
     return ret;
 }
+
+static void __unirtos_export_ecdh_demo(void)
+{
+    unsigned char shared_key[MBEDTLS_ECP_MAX_BYTES] = {0};
+    size_t shared_key_len = 0;
+
+    (void)ecdh_key_agreement_demo(shared_key, sizeof(shared_key), &shared_key_len);
+}
+
+UNIRTOS_APP_EXPORT(200, "ecdh_demo", __unirtos_export_ecdh_demo);
